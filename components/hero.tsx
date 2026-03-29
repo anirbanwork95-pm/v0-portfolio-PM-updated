@@ -1,9 +1,9 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, type Variants } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -14,21 +14,21 @@ const containerVariants = {
   },
 };
 
-const itemVariants = {
+const itemVariants: Variants = {
   hidden: { opacity: 0, y: 10 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.5, ease: 'easeOut' },
+    transition: { duration: 0.5, ease: 'easeOut' as const },
   },
 };
 
-const decorationVariants = {
+const decorationVariants: Variants = {
   hidden: { opacity: 0, scale: 0.8 },
   visible: {
     opacity: 1,
     scale: 1,
-    transition: { duration: 0.8, ease: 'easeOut' },
+    transition: { duration: 0.8, ease: 'easeOut' as const },
   },
 };
 
@@ -56,15 +56,15 @@ export function Hero() {
               variants={itemVariants}
               className="text-5xl lg:text-6xl font-bold text-gray-900 leading-tight"
             >
-              Alex Chen
+              Anirban Banerjee
             </motion.h1>
 
             {/* Job Title */}
             <motion.p
               variants={itemVariants}
-              className="text-xl text-gray-600 font-medium"
+              className="text-xl text-teal-700 font-medium"
             >
-              Full Stack Developer & Design Engineer
+              Product Manager | SaaS · Monetization · AI
             </motion.p>
 
             {/* Tagline */}
@@ -72,7 +72,7 @@ export function Hero() {
               variants={itemVariants}
               className="text-lg text-gray-700 leading-relaxed max-w-lg"
             >
-              I craft beautiful, performant digital experiences by blending thoughtful design with robust engineering. Specializing in modern web technologies and user-centered solutions.
+              Building products that scale revenue, doctor engagement, and platform infrastructure across 1,200+ locations.
             </motion.p>
 
             {/* Buttons */}
@@ -83,15 +83,17 @@ export function Hero() {
               <Button
                 size="lg"
                 className="bg-teal-600 hover:bg-teal-700 text-white"
+                asChild
               >
-                Get in Touch
+                <a href="mailto:anirban.work95@gmail.com">Get in Touch</a>
               </Button>
               <Button
                 size="lg"
                 variant="outline"
                 className="border-gray-300 text-gray-900 hover:bg-gray-50"
+                asChild
               >
-                Download Resume
+                <a href="/AnirbanBanerjee_CV.pdf" target="_blank" rel="noopener noreferrer">Download Resume</a>
               </Button>
             </motion.div>
           </motion.div>

@@ -15,51 +15,64 @@ interface ExperienceEntry {
 
 const experienceData: ExperienceEntry[] = [
   {
-    id: 'tech-corp',
-    company: 'TechCorp Inc.',
-    title: 'Senior Product Designer',
-    dateRange: 'Jan 2021 - Present',
-    location: 'San Francisco, CA',
+    id: 'bfh-pm',
+    company: 'Bajaj Finserv Health',
+    title: 'Product Manager (Growth & Monetization)',
+    dateRange: 'May 2023 – Present',
+    location: 'Pune, India',
     responsibilities: [
-      'Led design of customer-facing web application used by 500K+ users',
-      'Established design system with 100+ reusable components',
-      'Mentored 4 junior designers and improved team design process',
+      'Built subscription monetization models unlocking ₹11 Cr ARR across doctor and patient segments',
+      'Launched add-on products and dental vertical, expanding revenue surface area',
+      'Scaled doctor platform from individual users to enterprise clinic chains across 1,200+ locations',
+      'Shipped AI beat planning engine to optimize field sales coverage and efficiency',
+      'Developed RAG + LLM sales chatbot to assist reps with real-time product and pricing queries',
+      'Designed fraud prevention system to reduce subscription abuse and protect revenue integrity',
+      'Led Salesforce-based onboarding flows for 200K+ doctors across the platform',
     ],
   },
   {
-    id: 'design-studio',
-    company: 'Creative Design Studio',
-    title: 'Product Designer',
-    dateRange: 'Jun 2019 - Dec 2020',
-    location: 'New York, NY',
+    id: 'bfh-intern',
+    company: 'Bajaj Finserv Health',
+    title: 'Product Management Intern',
+    dateRange: 'Mar 2022 – May 2022',
+    location: 'Pune, India',
     responsibilities: [
-      'Designed user interface for 12+ web and mobile applications',
-      'Increased user engagement by 45% through UX improvements',
-      'Collaborated with stakeholders to define product requirements and roadmap',
+      'Built OTP + GPS-based appointment verification to confirm patient attendance at point of visit',
+      'Reduced appointment cancellation rate from 30% to 11% through friction-reducing product changes',
     ],
   },
   {
-    id: 'startup',
-    company: 'StartupXYZ',
-    title: 'UI/UX Designer',
-    dateRange: 'Mar 2018 - May 2019',
-    location: 'Austin, TX',
+    id: 'hiration',
+    company: 'Hiration (YC-backed)',
+    title: 'Product Management Intern',
+    dateRange: 'Sep 2020 – Mar 2021',
+    location: 'Delhi, India',
     responsibilities: [
-      'Created wireframes and prototypes for SaaS platform',
-      'Conducted user research and usability testing with 50+ participants',
-      'Developed brand identity and visual design guidelines',
+      'Migrated product analytics to Mixpanel, enabling funnel-level visibility across the user journey',
+      'A/B tested landing page variants, achieving a 20% increase in new user signups',
+      'Improved Trustpilot rating from 3.0 to 4.8 through targeted UX and support quality improvements',
     ],
   },
   {
-    id: 'agency',
-    company: 'Digital Agency Co.',
-    title: 'Junior Designer',
-    dateRange: 'Aug 2017 - Feb 2018',
-    location: 'Boston, MA',
+    id: 'realisable',
+    company: 'Realisable Values',
+    title: 'Business Development Manager',
+    dateRange: 'Jul 2019 – Sep 2020',
+    location: 'Lucknow, India',
     responsibilities: [
-      'Designed digital assets for 20+ client projects',
-      'Assisted in concept development and brainstorming sessions',
-      'Maintained brand consistency across all deliverables',
+      'Led a 4-member BD team to drive partnerships and pipeline growth',
+      'Launched a property valuation vertical to serve international student loan underwriting needs',
+    ],
+  },
+  {
+    id: 'gingercup',
+    company: 'Gingercup',
+    title: 'Business Development Executive',
+    dateRange: 'Mar 2018 – Jun 2019',
+    location: 'Bangalore, India',
+    responsibilities: [
+      'Drove 30% revenue growth through new client acquisition and account expansion',
+      'Managed OYO Rooms campaign delivering 6M+ impressions across 4 cities',
     ],
   },
 ];
@@ -118,7 +131,7 @@ function TimelineCard({ entry, isLeft, index }: TimelineCardProps) {
 
 export function Experience() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.2 });
+  useInView(ref, { once: true, amount: 0.2 });
   const [selectedCompany, setSelectedCompany] = useState<string | null>(null);
 
   const companies = experienceData.map(entry => entry.company);
@@ -128,7 +141,7 @@ export function Experience() {
     : experienceData;
 
   return (
-    <section ref={ref} className="py-20 lg:py-32 px-4 bg-white">
+    <section ref={ref} id="experience" className="py-20 lg:py-32 px-4 bg-white">
       <div className="max-w-4xl mx-auto">
         {/* Section Heading */}
         <motion.div

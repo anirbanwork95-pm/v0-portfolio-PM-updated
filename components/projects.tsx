@@ -1,73 +1,81 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { ArrowRight, Users, TrendingUp, Star, Download, Eye } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
-
-interface ProjectMetric {
-  label: string;
-  value: string;
-  icon: React.ReactNode;
-}
 
 interface FeaturedProject {
   id: string;
   category: string;
   title: string;
   description: string;
-  metrics: ProjectMetric[];
+  badges: string[];
   accentColor: string;
-  link: string;
+  link?: string;
 }
-
-
 
 const featuredProjects: FeaturedProject[] = [
   {
-    id: 'fintech-dashboard',
-    category: 'FinTech',
-    title: 'Enterprise Analytics Platform',
+    id: 'subscription-monetization',
+    category: 'Monetization',
+    title: 'Subscription Monetization Engine',
     description:
-      'Led the design and development of a real-time analytics dashboard for financial institutions, enabling data-driven decision making.',
-    metrics: [
-      { label: 'Users', value: '1.2M', icon: <Users className="w-3 h-3" /> },
-      { label: 'Growth', value: '+340%', icon: <TrendingUp className="w-3 h-3" /> },
-      { label: 'Rating', value: '4.9', icon: <Star className="w-3 h-3" /> },
-    ],
+      'Led 0→1 launch of subscription pricing for doctors on a SaaS platform. Designed tiered plans, pricing logic, and conversion flows that drove 62% conversion to paid plans, 10,000 paid doctors, and ₹5 Cr ARR from enterprise chains.',
+    badges: ['10K Paid Doctors', '62% Conversion', '₹5Cr ARR'],
     accentColor: 'bg-teal-500',
-    link: '#',
+    link: 'https://doctors.bajajfinservhealth.in/',
   },
   {
-    id: 'healthcare-app',
-    category: 'Healthcare',
-    title: 'Patient Care Mobile App',
+    id: 'ai-beat-planning',
+    category: 'AI / Sales Ops',
+    title: 'AI-Powered Beat Planning Engine',
     description:
-      'Designed an intuitive mobile experience for patient-doctor communication, appointment scheduling, and health tracking.',
-    metrics: [
-      { label: 'Downloads', value: '850K', icon: <Download className="w-3 h-3" /> },
-      { label: 'Retention', value: '78%', icon: <TrendingUp className="w-3 h-3" /> },
-      { label: 'Rating', value: '4.8', icon: <Star className="w-3 h-3" /> },
-    ],
+      'Built AI scheduling optimization for field sales agents to maximize coverage and conversion. Improved sales efficiency by 33% — from 1 sale per 12 meetings to 1 per 8 — embedded directly in Salesforce.',
+    badges: ['33% Efficiency Gain', 'AI-Powered', 'Salesforce Embedded'],
     accentColor: 'bg-teal-600',
-    link: '#',
+    link: 'https://doctors.bajajfinservhealth.in/',
   },
   {
-    id: 'ecommerce-redesign',
-    category: 'E-Commerce',
-    title: 'Marketplace Redesign',
+    id: 'rag-llm-chatbot',
+    category: 'AI / LLM',
+    title: 'RAG+LLM Sales Chatbot',
     description:
-      'Complete UX overhaul of a major e-commerce platform, resulting in significant conversion rate improvements.',
-    metrics: [
-      { label: 'Visitors', value: '5M+', icon: <Eye className="w-3 h-3" /> },
-      { label: 'Conversion', value: '+62%', icon: <TrendingUp className="w-3 h-3" /> },
-      { label: 'Revenue', value: '+$2.1M', icon: <Star className="w-3 h-3" /> },
-    ],
+      'Built an internal AI assistant for field agents providing real-time pitch guidance and objection handling. Trained on 200+ doctor attributes to surface contextual, personalized sales intelligence at point of contact.',
+    badges: ['RAG+LLM', '200+ Attributes', 'Real-time Intel'],
     accentColor: 'bg-teal-700',
-    link: '#',
+    link: 'https://doctors.bajajfinservhealth.in/',
+  },
+  {
+    id: 'clinic-platform-scaling',
+    category: 'Platform',
+    title: 'Doctor-to-Clinic Platform Scaling',
+    description:
+      'Transformed an individual doctor tool into a multi-location enterprise clinic platform. Enabled centralized management across 50+ clinic chains and 1,200+ locations with role-based access and consolidated reporting.',
+    badges: ['50+ Chains', '1,200+ Locations', 'Enterprise'],
+    accentColor: 'bg-teal-500',
+    link: 'https://www.bajajfinservhealth.in/clinic',
+  },
+  {
+    id: 'dental-payments',
+    category: 'Payments',
+    title: 'Dental Procedure Payments',
+    description:
+      'Built a procedure payment system supporting 100+ dental procedures with dynamic pricing, insurance integration, and split-payment flows. Drove ₹11.2 Cr in annual transaction value and ₹4.5 Cr in direct revenue.',
+    badges: ['100+ Procedures', '₹11.2Cr Transactions', '₹4.5Cr Revenue'],
+    accentColor: 'bg-teal-600',
+    link: 'https://www.bajajfinservhealth.in/search?mode=inclinic&source=inclinic_consultation&specialities=Dentist',
+  },
+  {
+    id: 'fraud-prevention',
+    category: 'Trust & Safety',
+    title: 'Fraud Prevention & QC System',
+    description:
+      'Built a doctor credential verification and quality control system in Salesforce to detect fraudulent profiles at onboarding. Verified 30,000+ doctor profiles and reduced fraud incidents by 30%.',
+    badges: ['30K+ Verified', '30% Fraud Reduction', 'Salesforce'],
+    accentColor: 'bg-teal-700',
+    link: 'https://www.bajajfinservhealth.in/in-clinic-consultation?utm_source=hrx_dweb',
   },
 ];
-
-
 
 function FeaturedProjectCard({ project, index }: { project: FeaturedProject; index: number }) {
   return (
@@ -75,17 +83,17 @@ function FeaturedProjectCard({ project, index }: { project: FeaturedProject; ind
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      viewport={{ once: true, amount: 0.3 }}
-      className="group bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden border border-gray-100"
+      viewport={{ once: true, amount: 0.2 }}
+      className="group bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden border border-gray-100 flex flex-col"
     >
       {/* Accent Bar */}
       <div className={`h-1.5 ${project.accentColor}`} />
 
-      <div className="p-6">
+      <div className="p-6 flex flex-col flex-1">
         {/* Category Label */}
         <Badge
           variant="secondary"
-          className="mb-4 bg-teal-50 text-teal-700 border-teal-100 font-medium"
+          className="mb-4 self-start bg-teal-50 text-teal-700 border-teal-100 font-medium"
         >
           {project.category}
         </Badge>
@@ -96,38 +104,38 @@ function FeaturedProjectCard({ project, index }: { project: FeaturedProject; ind
         </h3>
 
         {/* Description */}
-        <p className="text-gray-600 text-sm leading-relaxed mb-5 line-clamp-2">
+        <p className="text-gray-600 text-sm leading-relaxed mb-5 flex-1">
           {project.description}
         </p>
 
-        {/* Metrics */}
-        <div className="flex flex-wrap gap-2 mb-6">
-          {project.metrics.map((metric, i) => (
-            <div
-              key={i}
-              className="flex items-center gap-1.5 bg-gray-50 px-3 py-1.5 rounded-full text-xs font-medium text-gray-700"
+        {/* Badges */}
+        <div className="flex flex-wrap gap-2 mb-5">
+          {project.badges.map((badge) => (
+            <span
+              key={badge}
+              className="bg-gray-50 border border-gray-200 text-gray-700 px-3 py-1 rounded-full text-xs font-medium"
             >
-              <span className="text-teal-600">{metric.icon}</span>
-              <span className="font-semibold">{metric.value}</span>
-              <span className="text-gray-500">{metric.label}</span>
-            </div>
+              {badge}
+            </span>
           ))}
         </div>
 
-        {/* View Project Link */}
-        <a
-          href={project.link}
-          className="inline-flex items-center gap-2 text-teal-600 font-semibold text-sm group/link hover:text-teal-700 transition-colors"
-        >
-          View Project
-          <ArrowRight className="w-4 h-4 group-hover/link:translate-x-1 transition-transform" />
-        </a>
+        {/* View Project Link — only shown when a URL is provided */}
+        {project.link && (
+          <a
+            href={project.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 text-teal-600 font-semibold text-sm group/link hover:text-teal-700 transition-colors"
+          >
+            View Project
+            <ArrowRight className="w-4 h-4 group-hover/link:translate-x-1 transition-transform" />
+          </a>
+        )}
       </div>
     </motion.div>
   );
 }
-
-
 
 export function Projects() {
   return (

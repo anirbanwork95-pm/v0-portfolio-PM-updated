@@ -3,38 +3,52 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+
 const skillsData = {
   'Product & Growth': [
     'Product Strategy',
-    'Market Analysis',
-    'User Research',
-    'A/B Testing',
-    'Growth Metrics',
-    'Data Analysis',
     'Roadmapping',
-    'Customer Insights'
+    'Feature Prioritization',
+    'PRD/BRD Writing',
+    'Subscription Pricing',
+    'Monetization Strategy',
+    'Product-Led Growth',
+    'Conversion Optimization',
+    'Feature Gating',
+    'Revenue Share Models',
   ],
-  'Technical': [
-    'React',
-    'Next.js',
-    'TypeScript',
-    'Tailwind CSS',
-    'Node.js',
-    'PostgreSQL',
-    'APIs',
-    'Web Performance'
+  'Technical & AI': [
+    'Salesforce (CRM, Workflows, APIs)',
+    'SQL',
+    'API Integrations',
+    'Platform Architecture',
+    'AI-Powered Products',
+    'RAG',
+    'LLM Applications',
+    'Sales Intelligence Tools',
+    'Mixpanel',
+    'Google Analytics',
+    'Power BI',
+    'Figma',
+    'Jira',
   ],
   'Leadership': [
-    'Team Building',
-    'Mentoring',
-    'Strategic Planning',
-    'Cross-functional Collaboration',
-    'Decision Making',
-    'Communication',
-    'Project Management',
-    'Problem Solving'
-  ]
+    'Cross-Functional Leadership',
+    'Stakeholder Management',
+    'Sprint Planning',
+    'Agile/Scrum',
+    'Backlog Management',
+    'Customer Discovery',
+    'User Research',
+  ],
 };
+
+const domainBadges = [
+  'B2B SaaS',
+  'Healthcare Tech',
+  'Enterprise Software',
+  'Sales Enablement',
+];
 
 export function Skills() {
   const [activeTab, setActiveTab] = useState('Product & Growth');
@@ -71,28 +85,17 @@ export function Skills() {
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.6 }}
-          className="mb-16"
+          initial={{ opacity: 0, y: 10 }}
+          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
+          transition={{ duration: 0.5 }}
+          className="mb-12"
         >
-          <div className="flex items-center gap-3 mb-4">
-            <span className="text-sm font-semibold tracking-widest text-gray-400">
-              SECTION
-            </span>
-            <span
-              className="text-3xl font-bold"
-              style={{ color: 'var(--teal-accent)' }}
-            >
-              03
-            </span>
-          </div>
-          <h2 className="text-5xl md:text-6xl font-bold text-foreground mb-6">
+          <span className="text-sm font-bold text-teal-600 tracking-widest uppercase">
+            03. Skills
+          </span>
+          <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mt-2">
             Skills & Expertise
           </h2>
-          <p className="text-lg text-foreground/60 max-w-2xl">
-            A diverse toolkit spanning product, technical, and leadership domains.
-          </p>
         </motion.div>
 
         {/* Tabs */}
@@ -131,7 +134,7 @@ export function Skills() {
           variants={containerVariants}
           initial="hidden"
           animate={inView ? 'visible' : 'hidden'}
-          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 mb-20"
+          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 mb-16"
         >
           {currentSkills.map((skill) => (
             <motion.div
@@ -144,6 +147,27 @@ export function Skills() {
               </span>
             </motion.div>
           ))}
+        </motion.div>
+
+        {/* Domain Expertise */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+        >
+          <p className="text-xs font-semibold tracking-widest text-gray-400 uppercase mb-4">
+            Domain Expertise
+          </p>
+          <div className="flex flex-wrap gap-3">
+            {domainBadges.map((badge) => (
+              <span
+                key={badge}
+                className="px-4 py-2 bg-teal-50 border border-teal-200 text-teal-700 rounded-full text-sm font-medium"
+              >
+                {badge}
+              </span>
+            ))}
+          </div>
         </motion.div>
       </div>
     </section>

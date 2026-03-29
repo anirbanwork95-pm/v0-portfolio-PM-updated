@@ -1,11 +1,11 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, type Variants } from 'framer-motion';
 import { useRef } from 'react';
 import { useInView } from 'framer-motion';
 import CountUp from 'react-countup';
 
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -16,34 +16,36 @@ const containerVariants = {
   },
 };
 
-const itemVariants = {
+const itemVariants: Variants = {
   hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6, ease: 'easeOut' },
+    transition: { duration: 0.6, ease: 'easeOut' as const },
   },
 };
 
 interface StatCardProps {
   number: number;
+  prefix?: string;
   suffix?: string;
+  separator?: string;
   label: string;
   isInView: boolean;
 }
 
-function StatCard({ number, suffix = '', label, isInView }: StatCardProps) {
+function StatCard({ number, prefix = '', suffix = '', separator = '', label, isInView }: StatCardProps) {
   return (
     <motion.div
       variants={itemVariants}
       className="bg-white rounded-lg p-6 shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-300"
     >
       <div className="text-center">
-        <div className="text-4xl lg:text-5xl font-bold text-teal-600 mb-2">
+        <div className="text-3xl lg:text-4xl font-bold text-teal-600 mb-2">
           {isInView ? (
-            <CountUp end={number} duration={2.5} suffix={suffix} />
+            <CountUp end={number} duration={2.5} prefix={prefix} suffix={suffix} separator={separator} />
           ) : (
-            `0${suffix}`
+            `${prefix}0${suffix}`
           )}
         </div>
         <p className="text-gray-600 text-sm lg:text-base font-medium">{label}</p>
@@ -59,6 +61,7 @@ export function About() {
   return (
     <section
       ref={ref}
+      id="about"
       className="py-20 lg:py-32 px-4 bg-gradient-to-b from-gray-50 to-white"
     >
       <div className="max-w-7xl mx-auto">
@@ -92,14 +95,7 @@ export function About() {
               variants={itemVariants}
               className="text-gray-700 leading-relaxed text-base lg:text-lg"
             >
-              {`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.`}
-            </motion.p>
-
-            <motion.p
-              variants={itemVariants}
-              className="text-gray-700 leading-relaxed text-base lg:text-lg mt-6"
-            >
-              {`Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.`}
+              Product Manager with 4+ years of experience in B2B SaaS, growth, and monetization. Currently at Bajaj Finserv Health, I&apos;ve built subscription models, AI-powered sales tools, and scaled a doctor platform from individual users to enterprise clinic chains. I specialize in turning ambiguous problem spaces into structured, revenue-generating products.
             </motion.p>
           </motion.div>
 
@@ -112,27 +108,29 @@ export function About() {
             viewport={{ once: true, amount: 0.2 }}
           >
             <StatCard
-              number={12}
+              number={11}
+              prefix="₹"
+              suffix="+ Cr ARR"
+              label="Unlocked"
+              isInView={isInView}
+            />
+            <StatCard
+              number={200}
+              suffix="K+"
+              label="Doctors Onboarded"
+              isInView={isInView}
+            />
+            <StatCard
+              number={1200}
               suffix="+"
-              label="Years Experience"
+              separator=","
+              label="Locations Served"
               isInView={isInView}
             />
             <StatCard
-              number={1.2}
-              suffix="M+"
-              label="Users Impacted"
-              isInView={isInView}
-            />
-            <StatCard
-              number={45}
-              suffix="+"
-              label="Projects Completed"
-              isInView={isInView}
-            />
-            <StatCard
-              number={98}
-              suffix="%"
-              label="Client Satisfaction"
+              number={10000}
+              separator=","
+              label="Paid Subscribers"
               isInView={isInView}
             />
           </motion.div>

@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { Menu, X } from 'lucide-react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { cn } from '@/lib/utils'
 
 const navLinks = [
@@ -21,7 +22,6 @@ export function Navbar() {
     const handleScroll = () => {
       setHasScrolled(window.scrollY > 0)
     }
-
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
@@ -40,9 +40,9 @@ export function Navbar() {
           {/* Logo */}
           <Link
             href="/"
-            className="flex-shrink-0 font-semibold text-xl tracking-tight text-foreground hover:text-teal-700 transition-colors"
+            className="flex-shrink-0 font-semibold text-xl tracking-tight text-gray-900 hover:text-teal-700 transition-colors"
           >
-            JD
+            AB
           </Link>
 
           {/* Desktop Navigation */}
@@ -51,7 +51,7 @@ export function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="px-3 py-2 rounded-md text-sm font-medium text-foreground/70 hover:text-teal-700 hover:bg-teal-50 transition-colors"
+                className="px-3 py-2 rounded-md text-sm font-medium text-gray-600 hover:text-teal-700 hover:bg-teal-50 transition-colors"
               >
                 {link.label}
               </Link>
@@ -62,37 +62,41 @@ export function Navbar() {
           <div className="md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="inline-flex items-center justify-center p-2 rounded-md text-foreground/70 hover:text-teal-700 hover:bg-teal-50 transition-colors focus:outline-none"
-              aria-expanded="false"
+              className="inline-flex items-center justify-center p-2 rounded-md text-gray-600 hover:text-teal-700 hover:bg-teal-50 transition-colors focus:outline-none"
+              aria-expanded={isOpen}
+              aria-label="Toggle navigation menu"
             >
-              <span className="sr-only">Open main menu</span>
-              {isOpen ? (
-                <X className="h-6 w-6" />
-              ) : (
-                <Menu className="h-6 w-6" />
-              )}
+              {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </button>
           </div>
         </div>
       </div>
 
       {/* Mobile Navigation */}
-      {isOpen && (
-        <div className="md:hidden border-t border-gray-200/50">
-          <div className="px-2 pt-2 pb-3 space-y-1">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="block px-3 py-2 rounded-md text-base font-medium text-foreground/70 hover:text-teal-700 hover:bg-teal-50 transition-colors"
-                onClick={() => setIsOpen(false)}
-              >
-                {link.label}
-              </Link>
-            ))}
-          </div>
-        </div>
-      )}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.2, ease: 'easeInOut' }}
+            className="md:hidden border-t border-gray-200/50 overflow-hidden"
+          >
+            <div className="px-2 pt-2 pb-3 space-y-1">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-teal-700 hover:bg-teal-50 transition-colors"
+                  onClick={() => setIsOpen(false)}
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   )
 }
