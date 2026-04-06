@@ -40,8 +40,8 @@ const contactMethods: ContactMethod[] = [
     id: 'phone',
     icon: <Phone className="w-6 h-6" />,
     label: 'Phone',
-    value: '+91 63615 04182',
-    href: 'tel:+916361504182',
+    value: '+91 72048 10797',
+    href: 'tel:+917204810797',
   },
   {
     id: 'linkedin',
