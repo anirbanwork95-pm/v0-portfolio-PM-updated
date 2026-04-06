@@ -108,7 +108,7 @@ function ContactCard({ method, index }: { method: ContactMethod; index: number }
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, delay: index * 0.1 }}
       viewport={{ once: true }}
-      className={`group flex flex-col items-center p-6 bg-white rounded-xl border border-gray-100 shadow-sm transition-all duration-300 ${
+      className={`group flex flex-col items-center p-8 bg-white rounded-xl border border-gray-100 shadow-sm transition-all duration-300 min-w-0 ${
         isClickable ? 'hover:shadow-md hover:border-teal-200 cursor-pointer' : 'cursor-default'
       }`}
     >
@@ -118,7 +118,7 @@ function ContactCard({ method, index }: { method: ContactMethod; index: number }
       <span className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-1">
         {method.label}
       </span>
-      <span className={`text-sm text-gray-700 text-center transition-colors duration-300 ${isClickable ? 'group-hover:text-teal-600' : ''}`}>
+      <span className={`text-sm text-gray-700 text-center break-all w-full transition-colors duration-300 ${isClickable ? 'group-hover:text-teal-600' : ''}`}>
         {method.value}
       </span>
     </Tag>
@@ -170,7 +170,7 @@ export function Contact() {
           </motion.div>
 
           {/* Contact Method Cards */}
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-16">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-6 mb-16">
             {contactMethods.map((method, index) => (
               <ContactCard key={method.id} method={method} index={index} />
             ))}

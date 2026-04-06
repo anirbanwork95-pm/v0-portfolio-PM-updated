@@ -93,7 +93,7 @@ export function Hero() {
                 className="border-gray-300 text-gray-900 hover:bg-gray-50"
                 asChild
               >
-                <a href="/AnirbanBanerjee_CV.pdf" target="_blank" rel="noopener noreferrer">Download Resume</a>
+                <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">Download Resume</a>
               </Button>
             </motion.div>
           </motion.div>
