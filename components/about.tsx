@@ -128,8 +128,9 @@ export function About() {
               isInView={isInView}
             />
             <StatCard
-              number={10000}
-              separator=","
+              number={25000}
+              separator="," 
+              suffix="+"
               label="Paid Subscribers"
               isInView={isInView}
             />
